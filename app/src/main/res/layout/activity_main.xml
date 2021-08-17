@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/backgroundwhite"
     android:gravity="center"
-    android:onClick="buClick"
+    android:onClick="btClick"
     tools:context=".MainActivity">
 
     <TableRow
@@ -22,7 +22,7 @@
             android:layout_marginLeft="3pt"
             android:width="4pt"
             android:height="4pt"
-            android:background="@color/purple_200"
+            android:background="@color/white"
             android:onClick="btClick"
             app:iconTint="#FFFFFF" />
 
@@ -31,7 +31,7 @@
             android:layout_width="40pt"
             android:layout_height="40pt"
             android:layout_marginLeft="3pt"
-            android:background="@color/purple_200"
+            android:background="@color/white"
             android:onClick="btClick" />
 
         <Button
@@ -39,7 +39,7 @@
             android:layout_width="40pt"
             android:layout_height="40pt"
             android:layout_marginLeft="3pt"
-            android:background="@color/purple_200"
+            android:background="@color/white"
             android:onClick="btClick" />
     </TableRow>
 
@@ -56,7 +56,7 @@
             android:layout_marginLeft="3pt"
             android:width="4pt"
             android:height="4pt"
-            android:background="@color/purple_200"
+            android:background="@color/white"
             android:onClick="btClick" />
 
         <Button
@@ -64,7 +64,7 @@
             android:layout_width="40pt"
             android:layout_height="40pt"
             android:layout_marginLeft="3pt"
-            android:background="@color/purple_200"
+            android:background="@color/white"
             android:onClick="btClick" />
 
         <Button
@@ -72,7 +72,7 @@
             android:layout_width="40pt"
             android:layout_height="40pt"
             android:layout_marginLeft="3pt"
-            android:background="@color/purple_200"
+            android:background="@color/white"
             android:onClick="btClick" />
     </TableRow>
 
@@ -89,7 +89,7 @@
             android:layout_marginLeft="3pt"
             android:width="4pt"
             android:height="4pt"
-            android:background="@color/purple_200"
+            android:background="@color/white"
             android:onClick="btClick" />
 
         <Button
@@ -97,7 +97,7 @@
             android:layout_width="40pt"
             android:layout_height="40pt"
             android:layout_marginLeft="3pt"
-            android:background="@color/purple_200"
+            android:background="@color/white"
             android:onClick="btClick" />
 
         <Button
@@ -105,7 +105,7 @@
             android:layout_width="40pt"
             android:layout_height="40pt"
             android:layout_marginLeft="3pt"
-            android:background="@color/teal_200"
+            android:background="@color/white"
             android:onClick="btClick" />
     </TableRow>
 
