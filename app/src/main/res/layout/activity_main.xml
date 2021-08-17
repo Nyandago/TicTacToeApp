@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:gravity="center"
+    android:onClick="buClick"
     tools:context=".MainActivity">
 
     <TableRow
@@ -21,7 +22,8 @@
             android:layout_marginLeft="3pt"
             android:width="4pt"
             android:height="4pt"
-            android:background="@color/teal_200"
+            android:background="@color/purple_200"
+            android:onClick="btClick"
             app:iconTint="#FFFFFF" />
 
         <Button
@@ -29,16 +31,16 @@
             android:layout_width="40pt"
             android:layout_height="40pt"
             android:layout_marginLeft="3pt"
-            android:background="@color/teal_200"
-             />
+            android:background="@color/purple_200"
+            android:onClick="btClick" />
 
         <Button
             android:id="@+id/bt3"
             android:layout_width="40pt"
             android:layout_height="40pt"
             android:layout_marginLeft="3pt"
-            android:background="@color/teal_200"
-            />
+            android:background="@color/purple_200"
+            android:onClick="btClick" />
     </TableRow>
 
     <TableRow
@@ -54,24 +56,24 @@
             android:layout_marginLeft="3pt"
             android:width="4pt"
             android:height="4pt"
-            android:background="@color/teal_200"
-            />
+            android:background="@color/purple_200"
+            android:onClick="btClick" />
 
         <Button
             android:id="@+id/bt5"
             android:layout_width="40pt"
             android:layout_height="40pt"
             android:layout_marginLeft="3pt"
-            android:background="@color/teal_200"
-           />
+            android:background="@color/purple_200"
+            android:onClick="btClick" />
 
         <Button
             android:id="@+id/bt6"
             android:layout_width="40pt"
             android:layout_height="40pt"
             android:layout_marginLeft="3pt"
-            android:background="@color/teal_200"
-             />
+            android:background="@color/purple_200"
+            android:onClick="btClick" />
     </TableRow>
 
     <TableRow
@@ -87,16 +89,16 @@
             android:layout_marginLeft="3pt"
             android:width="4pt"
             android:height="4pt"
-            android:background="@color/teal_200"
-             />
+            android:background="@color/purple_200"
+            android:onClick="btClick" />
 
         <Button
             android:id="@+id/bt8"
             android:layout_width="40pt"
             android:layout_height="40pt"
             android:layout_marginLeft="3pt"
-            android:background="@color/teal_200"
-           />
+            android:background="@color/purple_200"
+            android:onClick="btClick" />
 
         <Button
             android:id="@+id/bt9"
@@ -104,7 +106,7 @@
             android:layout_height="40pt"
             android:layout_marginLeft="3pt"
             android:background="@color/teal_200"
-            />
+            android:onClick="btClick" />
     </TableRow>
 
 </TableLayout>
