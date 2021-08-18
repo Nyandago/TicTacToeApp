@@ -1,13 +1,12 @@
 package com.cannybits.tictactoeapp
 
-import android.graphics.Color.green
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import java.util.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,6 +45,7 @@ class MainActivity : AppCompatActivity() {
         btClicked.setBackgroundResource(R.color.red)
         player1.add(cellId)
         activePlayer = 2
+        autoPlay()
     }
     else
     {
@@ -114,6 +114,37 @@ class MainActivity : AppCompatActivity() {
         } else if(winner==2){
             Toast.makeText(this, "Hadija Won the Game!!",Toast.LENGTH_LONG).show()
         }
+    }
+
+    fun autoPlay(){
+        var emptyCells = ArrayList<Int>()
+
+        for(cellId in 1..9)
+        {
+           if(!player1.contains(cellId)||!player2.contains(cellId)){
+               emptyCells.add(cellId)
+           }
+        }
+
+        val r = Random()
+        val randIndex = r.nextInt(emptyCells.size)
+        val cellId = emptyCells[randIndex]
+
+        var btClicked: Button?
+        btClicked = when(cellId){
+            1-> bt1
+            2-> bt2
+            3-> bt3
+            4-> bt4
+            5-> bt5
+            6-> bt6
+            7-> bt7
+            8-> bt8
+            9-> bt9
+            else -> { bt1  }
+        }
+
+        playGame( cellId, btClicked)
     }
 
 }
