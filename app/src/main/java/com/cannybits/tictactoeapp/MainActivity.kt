@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
     }
 
-    fun btClick(view: View){
+   fun btClick(view: View){
 
      val btClicked = view as Button
      var cellId = 0
@@ -110,13 +110,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         if(winner == 1){
+            player1wins += 1
             Toast.makeText(this, "Canny Won the Game!!",Toast.LENGTH_LONG).show()
+            restartGame()
         } else if(winner==2){
+            player2wins += 1
             Toast.makeText(this, "Hadija Won the Game!!",Toast.LENGTH_LONG).show()
+            restartGame()
         }
     }
 
-    fun autoPlay(){
+     fun autoPlay(){
         var emptyCells = ArrayList<Int>()
 
         for(cellId in 1..9)
@@ -124,6 +128,10 @@ class MainActivity : AppCompatActivity() {
            if(!player1.contains(cellId)||!player2.contains(cellId)){
                emptyCells.add(cellId)
            }
+        }
+
+        if(emptyCells.size == 0) {
+            restartGame()
         }
 
         val r = Random()
@@ -145,6 +153,34 @@ class MainActivity : AppCompatActivity() {
         }
 
         playGame( cellId, btClicked)
+    }
+
+    var player1wins = 0
+    var player2wins = 0
+
+    fun restartGame(){
+        activePlayer = 1
+        player1.clear()
+        player2.clear()
+
+        for (cellId in 1..9){
+            val btClicked: Button? = when(cellId){
+                1-> bt1
+                2-> bt2
+                3-> bt3
+                4-> bt4
+                5-> bt5
+                6-> bt6
+                7-> bt7
+                8-> bt8
+                9-> bt9
+                else -> { bt1  }
+            }
+            btClicked!!.text = ""
+            btClicked!!.setBackgroundResource(R.color.white)
+            btClicked!!.isEnabled = true
+        }
+
     }
 
 }
