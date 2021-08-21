@@ -2,63 +2,83 @@ package com.cannybits.tictactoeapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import java.util.*
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.Timer
+import kotlin.concurrent.schedule
+
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
     }
 
-   fun btClick(view: View){
 
-     val btClicked = view as Button
-     var cellId = 0
-     when(btClicked.id){
-         R.id.bt1 -> cellId = 1
-         R.id.bt2 -> cellId = 2
-         R.id.bt3 -> cellId = 3
-         R.id.bt4 -> cellId = 4
-         R.id.bt5 -> cellId = 5
-         R.id.bt6 -> cellId = 6
-         R.id.bt7 -> cellId = 7
-         R.id.bt8 -> cellId = 8
-         R.id.bt9 -> cellId = 9
-     }
 
-        playGame(cellId, btClicked)
+  fun btClick(view: View){
+try {
+    val btClicked = view as Button
+    var cellId = 0
+    when (btClicked.id) {
+        R.id.bt1 -> cellId = 1
+        R.id.bt2 -> cellId = 2
+        R.id.bt3 -> cellId = 3
+        R.id.bt4 -> cellId = 4
+        R.id.bt5 -> cellId = 5
+        R.id.bt6 -> cellId = 6
+        R.id.bt7 -> cellId = 7
+        R.id.bt8 -> cellId = 8
+        R.id.bt9 -> cellId = 9
+    }
+
+    playGame(cellId, btClicked)
+} catch(ex: Exception){
+    Handler(Looper.getMainLooper()).post {
+        Toast.makeText(this, ex.message, Toast.LENGTH_LONG).show()
+    }
+}
+
  }
     var activePlayer = 1
 
     var player1 = ArrayList<Int>()
     var player2 = ArrayList<Int>()
 
-   private fun playGame(cellId: Int, btClicked: Button){
+     fun playGame(cellId: Int, btClicked: Button){
+ try {
 
-    if(activePlayer == 1)
-    {
-        btClicked.text = "X"
-        btClicked.setBackgroundResource(R.color.red)
-        player1.add(cellId)
-        activePlayer = 2
-        autoPlay()
-    }
-    else
-    {
-        btClicked.text = "O"
-        btClicked.setBackgroundResource(R.color.green)
-        player2.add(cellId)
-        activePlayer = 1
-    }
-       btClicked.isEnabled = false
+     if (activePlayer == 1) {
+         btClicked.text = "X"
+         btClicked.setBackgroundResource(R.color.red)
+         player1.add(cellId)
+         activePlayer = 2
+        // Timer().schedule(1000) {
 
-       checkWinner()
+             autoPlay()
+       //  }
+     } else {
+         btClicked.text = "O"
+         btClicked.setBackgroundResource(R.color.green)
+         player2.add(cellId)
+         activePlayer = 1
+     }
+     btClicked.isEnabled = false
+
+     checkWinner()
+ } catch(ex: Exception){
+     Handler(Looper.getMainLooper()).post {
+         Toast.makeText(this, ex.message, Toast.LENGTH_LONG).show()
+     }
+ }
    }
-    private fun checkWinner(){
+    fun checkWinner(){
         var winner:Int = -1
 
        //row 1
@@ -111,16 +131,23 @@ class MainActivity : AppCompatActivity() {
 
         if(winner == 1){
             player1wins += 1
-            Toast.makeText(this, "Canny Won the Game!!",Toast.LENGTH_LONG).show()
-            restartGame()
+            Toast.makeText(this, "Player 1 Won the Game!!",Toast.LENGTH_LONG).show()
+          //  delay(2000)
+          //  Timer().schedule(2000) {
+                restartGame()
+           //}
         } else if(winner==2){
             player2wins += 1
-            Toast.makeText(this, "Hadija Won the Game!!",Toast.LENGTH_LONG).show()
-            restartGame()
+            Toast.makeText(this, "Player 2 Won the Game!!",Toast.LENGTH_LONG).show()
+        //   delay(2000)
+        //  Timer().schedule(2000) {
+                restartGame()
+         //   }
         }
     }
 
-     fun autoPlay(){
+   fun autoPlay(){
+       try{
         var emptyCells = ArrayList<Int>()
 
         for(cellId in 1..9)
@@ -138,49 +165,71 @@ class MainActivity : AppCompatActivity() {
         val randIndex = r.nextInt(emptyCells.size)
         val cellId = emptyCells[randIndex]
 
-        var btClicked: Button?
-        btClicked = when(cellId){
-            1-> bt1
-            2-> bt2
-            3-> bt3
-            4-> bt4
-            5-> bt5
-            6-> bt6
-            7-> bt7
-            8-> bt8
-            9-> bt9
-            else -> { bt1  }
+    var btClicked: Button?
+    btClicked = when (cellId) {
+        1 -> bt1
+        2 -> bt2
+        3 -> bt3
+        4 -> bt4
+        5 -> bt5
+        6 -> bt6
+        7 -> bt7
+        8 -> bt8
+        9 -> bt9
+        else -> {
+            bt1
         }
-
-        playGame( cellId, btClicked)
+    }
+    //    delay(2000)
+    playGame(cellId, btClicked)
+} catch(ex: Exception){
+    Handler(Looper.getMainLooper()).post {
+        Toast.makeText(this, ex.message, Toast.LENGTH_LONG).show()
+    }
+}
     }
 
     var player1wins = 0
     var player2wins = 0
 
     fun restartGame(){
-        activePlayer = 1
-        player1.clear()
-        player2.clear()
+        try{
 
-        for (cellId in 1..9){
-            val btClicked: Button? = when(cellId){
-                1-> bt1
-                2-> bt2
-                3-> bt3
-                4-> bt4
-                5-> bt5
-                6-> bt6
-                7-> bt7
-                8-> bt8
-                9-> bt9
-                else -> { bt1  }
+Thread(Runnable {
+            activePlayer = 1
+            player1.clear()
+            player2.clear()
+            for (cellId in 1..9) {
+                val btClicked: Button? = when (cellId) {
+                    1 -> bt1
+                    2 -> bt2
+                    3 -> bt3
+                    4 -> bt4
+                    5 -> bt5
+                    6 -> bt6
+                    7 -> bt7
+                    8 -> bt8
+                    9 -> bt9
+                    else -> {
+                        bt1
+                    }
+                }
+                this@MainActivity.runOnUiThread(java.lang.Runnable {
+                    btClicked!!.text = ""
+                    btClicked!!.setBackgroundResource(R.color.white)
+                    btClicked!!.isEnabled = true
+                })
+
+
             }
-            btClicked!!.text = ""
-            btClicked!!.setBackgroundResource(R.color.white)
-            btClicked!!.isEnabled = true
-        }
 
+         })
+
+        } catch(ex: Exception) {
+            Handler(Looper.getMainLooper()).post {
+                Toast.makeText(this, ex.message, Toast.LENGTH_LONG).show()
+           }
+        }
     }
 
 }
